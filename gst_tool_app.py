@@ -7,6 +7,7 @@ Created on Sun Jul 18 00:14:05 2021
 """
 full_amount = 0
 import streamlit as st
+import math
 st.title("Rubberfy gst calculator")
 st.subheader("Order type")
 text = st.radio("order type",('COD','ONLINE'))
@@ -28,7 +29,7 @@ if st.button("All item added"):
     else:
         ship_money = 0
     full_amount = sum_cost+ship_money + cod_money
-    pre_gst_cost = round(full_amount * 100/118,0)
+    pre_gst_cost = math.floor(full_amount * 100/118)
     gst_cost = round(18*pre_gst_cost/100,2)
     round_off = round(full_amount - (pre_gst_cost+gst_cost),2)
     without_sep_charge = pre_gst_cost - (cod_money+ship_money)
